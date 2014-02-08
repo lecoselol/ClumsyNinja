@@ -2,6 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:gravity="bottom|center_vertical"
              tools:context="lecoselol.clumsyninja.PinActivity$PlaceholderFragment">
 
     <TextView
@@ -17,7 +18,7 @@
             android:id="@+id/txt_pin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Start typing your pin NAO"
+            android:hint="PIN"
             style="@style/pincoso"/>
 
     <TableRow
