@@ -5,4 +5,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="numerello">
+        <item name="android:paddingRight">36dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
 </resources>
