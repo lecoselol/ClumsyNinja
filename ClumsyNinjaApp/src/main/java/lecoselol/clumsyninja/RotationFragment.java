@@ -1,6 +1,8 @@
 package lecoselol.clumsyninja;
 
 import android.app.Fragment;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +77,29 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
         {
             NinjaVibrator.initalize(getActivity());
             NinjaVibrator.vibrate(10);
-            //TODO do somthing next
+
+            Thread stealthyPlayer = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("LOL I DONT KNOW WHAT IM DOING HERE");
+                    MediaPlayer mp = new MediaPlayer();
+                    AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.alarm);
+                    try {
+                        mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                        mp.prepare();
+                        mp.start();
+                        afd.close();
+                    }
+                    catch (Exception e) {
+                        // FANCULO
+                    }
+
+                }
+            });
+            stealthyPlayer.setName("FUCK YOU DORPHIIIIINSSSS");
+            stealthyPlayer.start();    // This is a badass thread we have here guys
+
+            getFragmentManager().popBackStack();  // TODO: Eugenio fai le cose che io qui non coso le cose
         }
     }
 }
