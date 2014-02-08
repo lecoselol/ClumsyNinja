@@ -32,4 +32,10 @@
         <item name="android:padding">16dp</item>
     </style>
 
+    <style name="badasstext">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:layout_margin">24dp</item>
+    </style>
+
 </resources>
