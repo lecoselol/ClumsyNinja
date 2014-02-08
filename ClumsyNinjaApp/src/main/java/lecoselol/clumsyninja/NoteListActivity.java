@@ -23,8 +23,7 @@ import android.view.MenuItem;
  * {@link NoteListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class NoteListActivity extends Activity
-        implements NoteListFragment.Callbacks {
+public class NoteListActivity extends Activity implements NoteListFragment.Callbacks {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet

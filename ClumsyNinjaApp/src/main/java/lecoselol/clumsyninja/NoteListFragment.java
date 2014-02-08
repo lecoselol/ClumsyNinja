@@ -3,9 +3,7 @@ package lecoselol.clumsyninja;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -21,7 +19,8 @@ import lecoselol.clumsyninja.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NoteListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class NoteListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnLongClickListener,
+                                                          ActionMode.Callback {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -43,6 +42,26 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
 
     public StaggeredGridView getListView() {
         return mListView;
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+
     }
 
     /**
@@ -80,12 +99,12 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         mListView = (StaggeredGridView) v.findViewById(android.R.id.list);
         mListView.setEmptyView(v.findViewById(android.R.id.empty));
 
-        mListView.setAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        mListView.setAdapter(new ArrayAdapter<>(
             inflater.getContext(),
             android.R.layout.simple_list_item_activated_1,
             android.R.id.text1,
             DummyContent.ITEMS));
-
+        mListView.setOnLongClickListener(this);
         return v;
     }
 
@@ -157,5 +176,11 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         mActivatedPosition = position;
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        getActivity().startActionMode(this);
+        return true;
     }
 }
