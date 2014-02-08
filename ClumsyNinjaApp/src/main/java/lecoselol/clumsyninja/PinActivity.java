@@ -42,7 +42,8 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
     }
 
     private void forgetAboutThatPinFragmentDude() {
-        if (mPinFrag != null) {
+        if (mPinFrag != null)
+        {
             mPinFrag.setListener(null);
             mPinFrag = null;
         }
