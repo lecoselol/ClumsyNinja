@@ -1,12 +1,21 @@
 <resources>
 
+    <!-- put the desired backgrounds here -->
+    <drawable name="statusbar_background">#ff8800</drawable>
+    <drawable name="window_background">#ffeeeeee</drawable>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:windowBackground">@drawable/window_background</item>
     </style>
 
     <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_lostylenonacqua</item>
+    </style>
+
+    <style name="AppTheme.ExtendedActionBar">
+        <!-- nothing to see here -->
     </style>
 
     <style name="numerello">
