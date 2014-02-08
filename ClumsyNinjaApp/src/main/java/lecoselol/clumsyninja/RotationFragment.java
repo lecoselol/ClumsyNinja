@@ -100,7 +100,9 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
             stealthyPlayer.setName("FUCK YOU DORPHIIIIINSSSS");
             stealthyPlayer.start();    // This is a badass thread we have here guys
 
-            startActivity(new Intent(getActivity(), NoteListActivity.class));
+            final Intent intentoAlfine = new Intent(getActivity(), NoteListActivity.class);
+            intentoAlfine.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentoAlfine);
         }
     }
 }
