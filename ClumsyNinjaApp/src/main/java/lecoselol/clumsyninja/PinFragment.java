@@ -44,7 +44,7 @@ public class PinFragment extends Fragment {
             @Override
             public boolean onLongClick(View v) {
                 Toast.makeText(v.getContext(), "Fun fact: this is actually ZERO in Norwegian.", Toast.LENGTH_LONG).show();
-                return false; // I don't remember if this is like "ok i got this" or not... oh, whatever
+                return true;
             }
         });
 
