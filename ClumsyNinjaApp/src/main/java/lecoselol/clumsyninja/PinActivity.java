@@ -49,6 +49,10 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
     public void onPinChanged(String currentPin) {
         if (TEST_PIN.equals(currentPin)) {
             getFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.animator.fade_rotate_in,
+                                                     R.animator.fade_rotate_out,
+                                                     R.animator.fade_rotate_back_in,
+                                                     R.animator.fade_rotate_back_out)
                                 .replace(R.id.container, new RotationFragment(), FRAG_ROTATION)
                                 .addToBackStack(null)
                                 .commit();
