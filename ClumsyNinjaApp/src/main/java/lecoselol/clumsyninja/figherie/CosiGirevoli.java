@@ -1,7 +1,9 @@
 package lecoselol.clumsyninja.figherie;
 
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import lecoselol.clumsyninja.R;
@@ -88,6 +90,9 @@ public class CosiGirevoli extends View {
     /**
      * Set the playback position for the rotating stuff.
      * Value is clamped between 0 (beginning) and 1 (end).
+     * <p>
+     * <strong>Eugenio</strong>: WTF si chiama playback?!
+     * </p>
      *
      * @param position The new playback position (0 >= position >= 1).
      */
@@ -106,6 +111,9 @@ public class CosiGirevoli extends View {
     /**
      * Returns the current playback position for the
      * rotating stuff.
+     * <p>
+     * <strong>Eugenio</strong>: WTF si chiama playback?!
+     * </p>
      *
      * @return Returns the playback position (0 >= position >= 1).
      */
