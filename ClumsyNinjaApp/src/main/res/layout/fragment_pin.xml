@@ -1,0 +1,146 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             tools:context="lecoselol.clumsyninja.PinActivity$PlaceholderFragment">
+
+    <TextView
+            android:id="@+id/txt_pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Start typing your pin NAO"
+            android:textSize="24sp"
+            android:textColorHint="#8fff"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@android:color/holo_orange_light"
+            android:drawableRight="@drawable/ic_delete"
+            android:padding="16dp"/>
+
+    <TableRow
+            android:layout_marginBottom="8dp">
+
+        <Button
+                android:id="@+id/txt_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                style="@style/numerello"/>
+
+        <Button
+                android:id="@+id/txt_due"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2"
+                style="@style/numerello"/>
+
+        <Button
+                android:id="@+id/txt_troix"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3"
+                style="@style/numerello"/>
+    </TableRow>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/holo_orange_dark"/>
+
+    <TableRow
+            android:layout_marginBottom="8dp">
+
+        <Button
+                android:id="@+id/txt_vier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4"
+                style="@style/numerello"/>
+
+        <Button
+                android:id="@+id/txt_cinco"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                style="@style/numerello"/>
+
+        <Button
+                android:id="@+id/txt_kuusi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6"
+                style="@style/numerello"/>
+    </TableRow>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/holo_orange_dark"/>
+
+    <TableRow
+            android:layout_marginBottom="8dp">
+
+        <Button
+                android:id="@+id/txt_zeven"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="7"
+                style="@style/numerello"/>
+
+        <Button
+                android:id="@+id/txt_oito"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8"
+                style="@style/numerello"/>
+
+        <!-- In onore della di Eugenio pulzella -->
+        <Button
+                android:id="@+id/txt_dziewięć"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="9"
+                style="@style/numerello"/>
+    </TableRow>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/holo_orange_dark"/>
+
+    <TableRow>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"/>
+
+        <Button
+                android:id="@+id/txt_null"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="null"
+                style="@style/numerello"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"/>
+    </TableRow>
+
+</TableLayout>
