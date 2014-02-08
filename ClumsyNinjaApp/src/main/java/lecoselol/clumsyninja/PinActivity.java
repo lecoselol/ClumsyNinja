@@ -1,9 +1,11 @@
 package lecoselol.clumsyninja;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 
-public class PinActivity extends Activity implements PinFragment.OnPinChangedListener {
+public class PinActivity extends Activity implements PinFragment.OnPinChangedListener, FragmentManager
+    .OnBackStackChangedListener {
 
     public static final String TEST_PIN = "0000";
     public static final String FRAG_ROTATION = "rotation";
@@ -20,6 +22,8 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
                                 .add(R.id.container, new PinFragment(), "pinpad")
                                 .commit();
         }
+
+        getFragmentManager().addOnBackStackChangedListener(this);
     }
 
     @Override
@@ -38,8 +42,7 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
     }
 
     private void forgetAboutThatPinFragmentDude() {
-        if(mPinFrag != null)
-        {
+        if (mPinFrag != null) {
             mPinFrag.setListener(null);
             mPinFrag = null;
         }
@@ -58,6 +61,15 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
                                 .commit();
 
             forgetAboutThatPinFragmentDude();
+        }
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            mPinFrag = (PinFragment) getFragmentManager().findFragmentByTag(FRAG_PINPAD);
+            assert mPinFrag != null;
+            mPinFrag.setListener(this);
         }
     }
 }

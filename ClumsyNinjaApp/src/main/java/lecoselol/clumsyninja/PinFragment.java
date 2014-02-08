@@ -71,6 +71,13 @@ public class PinFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPin = "";
+        mPinText.setText(mPin);
+    }
+
     public String getPin() {
         return mPin;
     }
