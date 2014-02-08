@@ -3,6 +3,7 @@ package lecoselol.clumsyninja;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 /**
@@ -35,7 +36,7 @@ public class NoteListActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
         // Show the Up button in the action bar.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(false);
 
         if (findViewById(R.id.note_detail_container) != null) {
             // The detail container view will be present only in the
@@ -52,6 +53,13 @@ public class NoteListActivity extends Activity
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
