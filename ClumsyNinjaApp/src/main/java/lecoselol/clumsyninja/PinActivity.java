@@ -2,6 +2,8 @@ package lecoselol.clumsyninja;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class PinActivity extends Activity implements PinFragment.OnPinChangedListener, FragmentManager
@@ -61,6 +63,22 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
                                 .commit();
 
             forgetAboutThatPinFragmentDude();
+
+            boomBaby();
+        }
+    }
+
+    private void boomBaby() {
+        MediaPlayer mp = new MediaPlayer();
+        AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.boom);
+        try {
+            mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            mp.prepare();
+            mp.start();
+            afd.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

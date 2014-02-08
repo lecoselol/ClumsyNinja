@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * You're supposed to input your PIN in this thing.
@@ -39,6 +40,13 @@ public class PinFragment extends Fragment {
         rootView.findViewById(R.id.txt_oito).setOnClickListener(l);
         rootView.findViewById(R.id.txt_dziewięć).setOnClickListener(l);
         rootView.findViewById(R.id.txt_null).setOnClickListener(l);
+        rootView.findViewById(R.id.txt_null).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(v.getContext(), "Fun fact: this is actually ZERO in Norwegian.", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
 
         mPinText = (TextView) rootView.findViewById(R.id.txt_pin);
         mPinText.setOnClickListener(new View.OnClickListener() {
