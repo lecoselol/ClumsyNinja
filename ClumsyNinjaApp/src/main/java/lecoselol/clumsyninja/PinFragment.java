@@ -2,14 +2,16 @@ package lecoselol.clumsyninja;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
-* Created by rock3r on 08/02/2014.
-*/
+ * Created by rock3r on 08/02/2014.
+ */
 public class PinFragment extends Fragment {
 
     private TextView mPinText;
@@ -21,7 +23,7 @@ public class PinFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pin, container, false);
         PinPadListener l = new PinPadListener();
 
@@ -30,12 +32,12 @@ public class PinFragment extends Fragment {
         int count = rootGroup.getChildCount();
         for (int i = 0; i < count; i++) {
             View v = rootGroup.getChildAt(i);
-            if (v instanceof TextView) {
+            if (v instanceof Button) {
                 v.setOnClickListener(l);
             }
         }
 
-        mPinText = (TextView)rootGroup.findViewById(R.id.txt_pin);
+        mPinText = (TextView) rootGroup.findViewById(R.id.txt_pin);
         mPinText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,8 +54,10 @@ public class PinFragment extends Fragment {
     }
 
     public void removeNumber() {
-        mPin = mPin.substring(0, mPin.length() - 1);
-        mPinText.setText(mPin);
+        if (!TextUtils.isEmpty(mPin)) {
+            mPin = mPin.substring(0, mPin.length() - 1);
+            mPinText.setText(mPin);
+        }
     }
 
     public String getPin() {

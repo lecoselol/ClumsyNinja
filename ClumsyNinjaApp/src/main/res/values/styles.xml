@@ -13,6 +13,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">28sp</item>
+        <item name="android:background">@drawable/pinpad_button</item>
     </style>
 
 </resources>

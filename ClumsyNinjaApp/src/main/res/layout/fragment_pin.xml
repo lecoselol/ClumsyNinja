@@ -2,10 +2,6 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:paddingLeft="@dimen/activity_horizontal_margin"
-             android:paddingRight="@dimen/activity_horizontal_margin"
-             android:paddingTop="@dimen/activity_vertical_margin"
-             android:paddingBottom="@dimen/activity_vertical_margin"
              tools:context="lecoselol.clumsyninja.PinActivity$PlaceholderFragment">
 
     <TextView
@@ -26,7 +22,7 @@
     <TableRow
             android:layout_marginBottom="8dp">
 
-        <TextView
+        <Button
                 android:id="@+id/txt_one"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,7 +30,7 @@
                 android:text="1"
                 style="@style/numerello"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_due"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -42,7 +38,7 @@
                 android:text="2"
                 style="@style/numerello"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_troix"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -57,9 +53,10 @@
             android:layout_marginBottom="8dp"
             android:background="@android:color/holo_orange_dark"/>
 
-    <TableRow>
+    <TableRow
+            android:layout_marginBottom="8dp">
 
-        <TextView
+        <Button
                 android:id="@+id/txt_vier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
                 android:text="4"
                 style="@style/numerello"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_cinco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +72,7 @@
                 android:text="5"
                 style="@style/numerello"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_kuusi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -90,9 +87,10 @@
             android:layout_marginBottom="8dp"
             android:background="@android:color/holo_orange_dark"/>
 
-    <TableRow>
+    <TableRow
+            android:layout_marginBottom="8dp">
 
-        <TextView
+        <Button
                 android:id="@+id/txt_zeven"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,7 +98,7 @@
                 android:text="7"
                 style="@style/numerello"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_oito"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -109,7 +107,7 @@
                 style="@style/numerello"/>
 
         <!-- In onore della di Eugenio pulzella -->
-        <TextView
+        <Button
                 android:id="@+id/txt_dziewięć"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -131,7 +129,7 @@
                 android:layout_height="2dp"
                 android:layout_weight="1"/>
 
-        <TextView
+        <Button
                 android:id="@+id/txt_null"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
