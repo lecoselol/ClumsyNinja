@@ -5,9 +5,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Twist and shout, baby!"
+            style="@style/badasstext"/>
+
     <lecoselol.clumsyninja.figherie.CosiGirevoli
             android:id="@+id/i_cosi_girano"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_margin="24dp"/>
 
 </LinearLayout>
