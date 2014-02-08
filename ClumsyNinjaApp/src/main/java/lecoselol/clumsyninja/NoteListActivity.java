@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 /**
@@ -57,7 +58,8 @@ public class NoteListActivity extends Activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.main, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -76,11 +78,18 @@ public class NoteListActivity extends Activity
             lockStuffUp();
             return true;
         }
+        else if (id == R.id.action_add) {
+            aggiungiUnaRobaAllaListaDelleCose();
+        }
         return super.onOptionsItemSelected(item);
     }
 
     private void lockStuffUp() {
         // TODO relock your shit
+    }
+
+    private void aggiungiUnaRobaAllaListaDelleCose() {
+        // TODO CRUD at its finest goes in here
     }
 
     /**
