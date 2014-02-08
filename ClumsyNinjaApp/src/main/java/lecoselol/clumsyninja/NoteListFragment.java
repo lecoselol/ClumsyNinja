@@ -1,12 +1,15 @@
 package lecoselol.clumsyninja;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import com.etsy.android.grid.StaggeredGridView;
 import lecoselol.clumsyninja.dummy.DummyContent;
 
 /**
@@ -18,7 +21,7 @@ import lecoselol.clumsyninja.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NoteListFragment extends ListFragment {
+public class NoteListFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -36,6 +39,11 @@ public class NoteListFragment extends ListFragment {
      * The current activated item position. Only used on tablets.
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
+    private StaggeredGridView mListView;
+
+    public StaggeredGridView getListView() {
+        return mListView;
+    }
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -67,15 +75,18 @@ public class NoteListFragment extends ListFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View v = inflater.inflate(R.layout.fragment_cosechescorrono, container, false);
+        mListView = (StaggeredGridView) v.findViewById(android.R.id.list);
+        mListView.setEmptyView(v.findViewById(android.R.id.empty));
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+        mListView.setAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+            inflater.getContext(),
+            android.R.layout.simple_list_item_activated_1,
+            android.R.id.text1,
+            DummyContent.ITEMS));
+
+        return v;
     }
 
     @Override
@@ -110,9 +121,7 @@ public class NoteListFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView listView, View view, int position, long id) {
-        super.onListItemClick(listView, view, position, id);
-
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
         mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
@@ -142,7 +151,8 @@ public class NoteListFragment extends ListFragment {
     private void setActivatedPosition(int position) {
         if (position == ListView.INVALID_POSITION) {
             getListView().setItemChecked(mActivatedPosition, false);
-        } else {
+        }
+        else {
             getListView().setItemChecked(position, true);
         }
 

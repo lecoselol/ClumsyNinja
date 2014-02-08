@@ -1,9 +1,8 @@
 package lecoselol.clumsyninja;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 /**
@@ -15,7 +14,7 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link NoteDetailFragment}.
  */
-public class NoteDetailActivity extends FragmentActivity {
+public class NoteDetailActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class NoteDetailActivity extends FragmentActivity {
                     getIntent().getStringExtra(NoteDetailFragment.ARG_ITEM_ID));
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .add(R.id.note_detail_container, fragment)
                     .commit();
         }
@@ -59,9 +58,15 @@ public class NoteDetailActivity extends FragmentActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpTo(this, new Intent(this, NoteListActivity.class));
+            navigateUpTo(this, new Intent(this, NoteListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void navigateUpTo(Activity activity, Intent upIntent) {
+        upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(upIntent);
+        activity.finish();
     }
 }

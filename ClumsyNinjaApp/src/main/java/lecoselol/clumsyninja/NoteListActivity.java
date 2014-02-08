@@ -1,9 +1,8 @@
 package lecoselol.clumsyninja;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 /**
@@ -22,7 +21,7 @@ import android.view.MenuItem;
  * {@link NoteListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class NoteListActivity extends FragmentActivity
+public class NoteListActivity extends Activity
         implements NoteListFragment.Callbacks {
 
     /**
@@ -47,7 +46,7 @@ public class NoteListActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            ((NoteListFragment) getSupportFragmentManager()
+            ((NoteListFragment) getFragmentManager()
                     .findFragmentById(R.id.note_list))
                     .setActivateOnItemClick(true);
         }
@@ -66,10 +65,14 @@ public class NoteListActivity extends FragmentActivity
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpFromSameTask(this);
+            lockStuffUp();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void lockStuffUp() {
+        // TODO relock your shit
     }
 
     /**
@@ -86,7 +89,7 @@ public class NoteListActivity extends FragmentActivity
             arguments.putString(NoteDetailFragment.ARG_ITEM_ID, id);
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .replace(R.id.note_detail_container, fragment)
                     .commit();
 
