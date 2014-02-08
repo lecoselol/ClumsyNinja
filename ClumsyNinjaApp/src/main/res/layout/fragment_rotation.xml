@@ -13,6 +13,7 @@
             style="@style/badasstext"/>
 
     <lecoselol.clumsyninja.figherie.CosiGirevoli
+            android:id="@+id/i_cosi_girano"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
