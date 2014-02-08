@@ -6,6 +6,7 @@
               android:layout_height="match_parent">
 
     <lecoselol.clumsyninja.figherie.CosiGirevoli
+            android:id="@+id/i_cosi_girano"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

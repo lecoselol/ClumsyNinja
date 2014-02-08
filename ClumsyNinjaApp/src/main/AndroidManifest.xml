@@ -10,6 +10,8 @@
     <uses-feature
         android:name="android.hardware.sensor.gyroscope"
         android:required="false"/>
+    
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
             android:allowBackup="true"
