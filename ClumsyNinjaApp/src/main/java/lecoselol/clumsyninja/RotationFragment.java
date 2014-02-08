@@ -1,6 +1,7 @@
 package lecoselol.clumsyninja;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -99,7 +100,7 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
             stealthyPlayer.setName("FUCK YOU DORPHIIIIINSSSS");
             stealthyPlayer.start();    // This is a badass thread we have here guys
 
-            getFragmentManager().popBackStack();  // TODO: Eugenio fai le cose che io qui non coso le cose
+            startActivity(new Intent(getActivity(), NoteListActivity.class));
         }
     }
 }
