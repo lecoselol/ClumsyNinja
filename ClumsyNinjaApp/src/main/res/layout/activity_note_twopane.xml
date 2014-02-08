@@ -8,6 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
+    android:fitsSystemWindows="true"
     tools:context="lecoselol.clumsyninja.NoteListActivity">
 
     <!--
