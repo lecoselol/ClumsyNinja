@@ -2,72 +2,83 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:background="@android:color/transparent">
-
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:fitsSystemWindows="true">
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/elSenorCardoCuandoSeHaceClicarTodo" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-            android:src="@drawable/el_cardo"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/elSenorCardoCuandoSeHaceClicarTodo" android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/el_cardo"/>
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="El Señor Cardo Cardoso de Cardiz è lieto di presentarvi Ninja Minchia! L'unico software per cifrare le vostre note realizzato in meno di 30 ore grazie al picco di Ballmer!"
-            android:id="@+id/textView" android:layout_alignParentLeft="true" android:layout_below="@+id/elSenorCardoCuandoSeHaceClicarTodo"
-            android:layout_alignParentRight="true" android:paddingRight="20dp"
-            android:paddingTop="10dp" android:paddingBottom="10dp" android:textStyle="bold" android:textSize="15dp"
-            android:typeface="sans" android:background="@android:color/transparent" android:paddingLeft="20dp"
-            android:gravity="center_horizontal"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="El Señor Cardo Cardoso de Cardiz è lieto di presentarvi Ninja Minchia! L'unico software per cifrare le vostre note realizzato in meno di 30 ore grazie al picco di Ballmer!"
+        android:id="@+id/textView" android:layout_alignParentLeft="true"
+        android:layout_below="@+id/elSenorCardoCuandoSeHaceClicarTodo"
+        android:layout_alignParentRight="true" android:paddingRight="20dp"
+        android:paddingTop="10dp" android:paddingBottom="10dp" android:textStyle="bold" android:textSize="15dp"
+        android:typeface="sans" android:background="@android:color/transparent" android:paddingLeft="20dp"
+        android:gravity="center_horizontal"/>
+
     <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="LECOSELOL"
-            android:id="@+id/txtLeCoseLOL"
-            android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
-            android:gravity="center_horizontal" android:background="@android:color/transparent"
-            android:paddingTop="15dp" android:paddingBottom="15dp"/>
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="LECOSELOL"
+        android:id="@+id/txtLeCoseLOL"
+        android:layout_below="@+id/textView" android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal" android:background="@android:color/transparent"
+        android:paddingTop="15dp" android:paddingBottom="15dp"/>
 
     <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:layout_below="@+id/txtLeCoseLOL"
+        android:layout_centerHorizontal="true" android:background="@android:color/transparent"
+        android:layout_marginTop="15dp" android:id="@+id/table">
+
+        <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:layout_below="@+id/txtLeCoseLOL"
-            android:layout_centerHorizontal="true" android:background="@android:color/transparent"
-            android:layout_marginTop="15dp" android:id="@+id/table">
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" android:background="@android:color/transparent">
+            android:layout_height="fill_parent" android:background="@android:color/transparent">
+
             <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Sebastiano Poggi"
-                    android:id="@+id/txtSebastiano" android:background="@android:color/transparent"
-                    style="@style/lecoselol"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Sebastiano Poggi"
+                android:id="@+id/txtSebastiano" android:background="@android:color/transparent"
+                style="@style/lecoselol"/>
+
             <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Eugenio Marletti"
-                    android:id="@+id/txtEugenio" android:background="@android:color/transparent"
-                    style="@style/lecoselol"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Eugenio Marletti"
+                android:id="@+id/txtEugenio" android:background="@android:color/transparent"
+                style="@style/lecoselol"/>
         </TableRow>
+
         <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" android:background="@android:color/transparent">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:background="@android:color/transparent">
+
             <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Antonio Scardigno"
-                    android:id="@+id/txtAntonio" android:background="@android:color/transparent" style="@style/lecoselol"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Antonio Scardigno"
+                android:id="@+id/txtAntonio" android:background="@android:color/transparent" style="@style/lecoselol"/>
+
             <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Roberto Orgiu"
-                    android:id="@+id/txtRoberto" android:background="@android:color/transparent"
-                    style="@style/lecoselol"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Roberto Orgiu"
+                android:id="@+id/txtRoberto" android:background="@android:color/transparent"
+                style="@style/lecoselol"/>
         </TableRow>
     </TableLayout>
 
