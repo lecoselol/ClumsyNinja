@@ -9,40 +9,44 @@
         android:layout_below="@+id/text_click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/card_shadow">
+        android:padding="8dp">
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:foreground="@drawable/card_mask"
-            android:clipChildren="false"
-            android:padding="8dp">
+            android:background="@drawable/card_shadow">
 
-        <!-- Oh ye God of them Layouts, please forgive my lazy ass -->
-        <LinearLayout
+        <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:ignore="UselessParent">
+                android:background="@android:color/white"
+                android:foreground="@drawable/card_mask"
+                android:padding="8dp">
 
-            <lecoselol.clumsyninja.figherie.FontTextView
-                    android:id="@+id/txt_iltitolodellacard"
+            <!-- Oh ye God of them Layouts, please forgive my lazy ass -->
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    style="@style/SenhorCardoText.Titolo"
-                    tools:text="El Senhor Cardo"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="UselessParent">
 
-            <lecoselol.clumsyninja.figherie.FontTextView
-                    android:id="@+id/txt_elcuerpodelsenhorcardo"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    style="@style/SenhorCardoText"
-                    tools:text="All your notes are belong to us"/>
+                <lecoselol.clumsyninja.figherie.FontTextView
+                        android:id="@+id/txt_iltitolodellacard"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        style="@style/SenhorCardoText.Titolo"
+                        tools:text="El Senhor Cardo"/>
 
-        </LinearLayout>
+                <lecoselol.clumsyninja.figherie.FontTextView
+                        android:id="@+id/txt_elcuerpodelsenhorcardo"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        style="@style/SenhorCardoText"
+                        tools:text="All your notes are belong to us"/>
 
+            </LinearLayout>
+
+        </FrameLayout>
 
     </FrameLayout>
 

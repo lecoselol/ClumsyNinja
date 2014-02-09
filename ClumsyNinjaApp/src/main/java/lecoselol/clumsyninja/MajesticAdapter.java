@@ -1,19 +1,16 @@
 package lecoselol.clumsyninja;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MajesticAdapter extends BaseAdapter implements Filterable {
+public class MajesticAdapter extends BaseAdapter {
     private ArrayList<Note> notes, originalNotes;
 
     public MajesticAdapter(Collection<Note> notes) {
@@ -39,10 +36,9 @@ public class MajesticAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        final LayoutInflater inflater =
-            (LayoutInflater) NinjaApplication.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (null == view) {
+            final LayoutInflater inflater = LayoutInflater.from(NinjaApplication.getInstance());
             holder = new ViewHolder();
             view = inflater.inflate(R.layout.senor_cardo, null);
             holder.title = (TextView) view.findViewById(R.id.txt_iltitolodellacard);
@@ -68,7 +64,7 @@ public class MajesticAdapter extends BaseAdapter implements Filterable {
 
         return view;
     }
-
+/*
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -98,7 +94,7 @@ public class MajesticAdapter extends BaseAdapter implements Filterable {
                 notifyDataSetChanged();
             }
         };
-    }
+    }*/
 
     private class ViewHolder {
         TextView title, body;

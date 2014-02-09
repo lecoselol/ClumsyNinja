@@ -55,9 +55,11 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
 
     @Override
     public void execute(Collection<Note> notes) {
+        int index = getArguments().getInt(ARG_ITEM_ID);
+        if (index > notes.size()) index = notes.size();
         // Assumes Roberto can do anything right
         if (notes.size() > 0) {
-            mItem = ((ArrayList<Note>) notes).get(getArguments().getInt(ARG_ITEM_ID));
+            mItem = ((ArrayList<Note>) notes).get(index);
         }
 
         if (mItem != null) {

@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.*;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import com.etsy.android.grid.StaggeredGridView;
-import lecoselol.clumsyninja.dummy.DummyContent;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +38,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
      * The current activated item position. Only used on tablets.
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
-    private StaggeredGridView mListView;
+    private GridView mListView;
 
     private ActionMode mActionMode;
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
@@ -102,7 +101,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         startActivity(shareIntent);
     }
 
-    public StaggeredGridView getListView() {
+    public GridView getListView() {
         return mListView;
     }
 
@@ -151,9 +150,10 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_cosechescorrono, container, false);
-        mListView = (StaggeredGridView) v.findViewById(android.R.id.list);
+        mListView = (GridView) v.findViewById(android.R.id.list);
         mListView.setEmptyView(v.findViewById(android.R.id.empty));
-
+        mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
         refreshList();
 
         return v;
@@ -194,7 +194,8 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        final Note item = (Note) mListView.getItemAtPosition(position);
+        mCallbacks.onItemSelected(String.valueOf(item.getId()));
     }
 
     @Override
@@ -234,7 +235,67 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
-    public void execute(Collection<Note> notes) {
-        mListView.setAdapter(new MajesticAdapter(notes));
+    public void execute(final Collection<Note> notes) {
+        final ArrayList<Note> list = (ArrayList<Note>) notes;
+
+        final BaseAdapter adapter =
+            new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return list.size();
+                }
+
+                @Override
+                public Object getItem(int position) {
+                    return list.get(position);
+                }
+
+                @Override
+                public long getItemId(int position) {
+                    return list.get(position).getId();
+                }
+
+                @Override
+                public View getView(int position, View view, ViewGroup parent) {
+                    ViewHolder holder;
+
+                    Log.d("ORCATROIA", "Uno: " + position);
+
+                    if (null == view) {
+                        final LayoutInflater inflater = LayoutInflater.from(NinjaApplication.getInstance());
+                        holder = new ViewHolder();
+                        view = inflater.inflate(R.layout.senor_cardo, null);
+                        holder.title = (TextView) view.findViewById(R.id.txt_iltitolodellacard);
+                        holder.body = (TextView) view.findViewById(R.id.txt_elcuerpodelsenhorcardo);
+                        view.setTag(holder);
+                    }
+                    else {
+                        holder = (ViewHolder) view.getTag();
+                    }
+
+                    final Note currentNote = list.get(position);
+
+                    final String title = currentNote.getTitle();
+                    if (TextUtils.isEmpty(title)) {
+                        holder.title.setVisibility(View.GONE);
+                    }
+                    else {
+                        holder.title.setVisibility(View.VISIBLE);
+                        holder.title.setText(title);
+                    }
+
+                    holder.body.setText(currentNote.getBody());
+
+                    return view;
+                }
+
+                class ViewHolder {
+                    public TextView title;
+                    public TextView body;
+                }
+            };
+
+        mListView.setAdapter(adapter);
+
     }
 }
