@@ -204,7 +204,6 @@ public class EncryptedDatabase
             {
                 /** Recovery part to avoid crashes **/
                 e.printStackTrace();
-                debug();
             }
 
             cursor.moveToNext();
@@ -213,6 +212,40 @@ public class EncryptedDatabase
         database.close();
 
         return notes;
+    }
+
+    public static Note getNote(Context context, int id)
+    {
+        final Helper helper = new Helper(context);
+        final SQLiteDatabase database = helper.getReadableDatabase();
+
+        final Cursor cursor = database.query(NoteTable.TABLE_NAME, null, "_id = " + id, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        Note tmpNote = null;
+
+        if (!cursor.isAfterLast())
+        {
+            try
+            {
+                tmpNote = new Note();
+                tmpNote.setId(cursor.getInt(cursor.getColumnIndex(NoteTable._ID)));
+                tmpNote.setTitle(decrypt(cursor.getBlob(cursor.getColumnIndex(NoteTable.NOTE_TITLE))));
+                tmpNote.setBody(decrypt(cursor.getBlob(cursor.getColumnIndex(NoteTable.NOTE_BODY))));
+            }
+            catch (Exception e)
+            {
+                /** Recovery part to avoid crashes **/
+                e.printStackTrace();
+            }
+
+            cursor.moveToNext();
+        }
+
+        database.close();
+
+        return tmpNote;
     }
 
     private static String decrypt(byte[] bytes)
@@ -228,10 +261,5 @@ public class EncryptedDatabase
             e.printStackTrace();
             return null;
         }
-    }
-
-    private static void debug()
-    {
-
     }
 }
