@@ -3,11 +3,22 @@ package lecoselol.clumsyninja;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -297,5 +308,24 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
 
         mListView.setAdapter(adapter);
 
+    }
+
+    static private final int COLORS_NUMBER = 8;
+    private Drawable getColor(int position)
+    {
+        final int color = position % COLORS_NUMBER;
+        int id;
+        switch (color)
+        {
+            default: case 0: id = R.color.bianco; break;
+            case 1: id = R.color.azzurro; break;
+            case 2: id = R.color.arancione; break;
+            case 3: id = R.color.giallo; break;
+            case 4: id = R.color.grigio; break;
+            case 5: id = R.color.melerde; break;
+            case 6: id = R.color.rosso; break;
+            case 7: id = R.color.verzurro; break;
+        }
+        return NinjaApplication.getInstance().getResources().getDrawable(id);
     }
 }

@@ -14,7 +14,10 @@ import lecoselol.clumsyninja.R;
 public class CosiGirevoli extends View {
     private float mPlaybackPosition = 0f;
 
-    private Paint mPaint;
+    private Paint mPaint1;
+    private Paint mPaint2;
+    private Paint mPaint3;
+    private final Paint[] paints = new Paint[3];
     private RectF mArcAreas[];
     private float[] mArcStarts;
     private float[] mArcLength;
@@ -34,12 +37,30 @@ public class CosiGirevoli extends View {
     }
 
     private void initCrap() {
-        mPaint = new Paint();
-        mPaint.setColor(getResources().getColor(R.color.ninjaminchia_color));
-        mPaint.setStrokeWidth(getResources().getDimension(R.dimen.arc_width));
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint1 = new Paint();
+        mPaint1.setColor(getResources().getColor(R.color.ninjaminchia_color1));
+        mPaint1.setStrokeWidth(getResources().getDimension(R.dimen.arc_width));
+        mPaint1.setAntiAlias(true);
+        mPaint1.setStyle(Paint.Style.STROKE);
+        mPaint1.setStrokeCap(Paint.Cap.ROUND);
+
+        mPaint2 = new Paint();
+        mPaint2.setColor(getResources().getColor(R.color.ninjaminchia_color2));
+        mPaint2.setStrokeWidth(getResources().getDimension(R.dimen.arc_width));
+        mPaint2.setAntiAlias(true);
+        mPaint2.setStyle(Paint.Style.STROKE);
+        mPaint2.setStrokeCap(Paint.Cap.ROUND);
+
+        mPaint3 = new Paint();
+        mPaint3.setColor(getResources().getColor(R.color.ninjaminchia_color3));
+        mPaint3.setStrokeWidth(getResources().getDimension(R.dimen.arc_width));
+        mPaint3.setAntiAlias(true);
+        mPaint3.setStyle(Paint.Style.STROKE);
+        mPaint3.setStrokeCap(Paint.Cap.ROUND);
+
+        paints[0] = mPaint1;
+        paints[1] = mPaint2;
+        paints[2] = mPaint3;
 
         mArcAreas = new RectF[3];
         mArcStarts = new float[] {70, 150, 180};
@@ -83,7 +104,7 @@ public class CosiGirevoli extends View {
         final float finalPos = 360 - mArcLength[index] / 2f;
         canvas.drawArc(mArcAreas[index],
                        mArcStarts[index] + (finalPos - mArcStarts[index]) * mPlaybackPosition,
-                       mArcLength[index], false, mPaint);
+                       mArcLength[index], false, paints[index]);
     }
 
     /**
