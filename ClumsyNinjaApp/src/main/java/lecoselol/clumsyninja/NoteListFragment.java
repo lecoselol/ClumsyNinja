@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.etsy.android.grid.StaggeredGridView;
 import lecoselol.clumsyninja.dummy.DummyContent;
+
+import java.util.Collection;
 
 /**
  * A list fragment representing a list of Notes. This fragment
@@ -21,7 +22,7 @@ import lecoselol.clumsyninja.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class NoteListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class NoteListFragment extends Fragment implements AdapterView.OnItemClickListener, AsyncAllTheThings.Callback {
     /**
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
@@ -43,6 +44,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
     public StaggeredGridView getListView() {
         return mListView;
     }
+
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -79,11 +81,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         mListView = (StaggeredGridView) v.findViewById(android.R.id.list);
         mListView.setEmptyView(v.findViewById(android.R.id.empty));
 
-        mListView.setAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-            inflater.getContext(),
-            android.R.layout.simple_list_item_activated_1,
-            android.R.id.text1,
-            DummyContent.ITEMS));
+        refreshList();
 
         return v;
     }
@@ -156,5 +154,14 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         mActivatedPosition = position;
+    }
+
+    public void refreshList() {
+        AsyncAllTheThings.selectAllTheNotes(this, NinjaApplication.getUserKey());
+    }
+
+    @Override
+    public void execute(Collection<Note> notes) {
+        mListView.setAdapter(new MajesticAdapter(notes));
     }
 }

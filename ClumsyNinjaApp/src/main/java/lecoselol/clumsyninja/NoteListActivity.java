@@ -1,6 +1,7 @@
 package lecoselol.clumsyninja;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -107,7 +108,7 @@ public class NoteListActivity extends Activity
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                                .replace(R.id.note_detail_container, fragment)
+                                .replace(R.id.note_detail_container, fragment, "detail")
                                 .commit();
 
         }
@@ -118,5 +119,10 @@ public class NoteListActivity extends Activity
             detailIntent.putExtra(NoteDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
+    }
+
+    public void refreshList() {
+        final NoteListFragment listFrag = (NoteListFragment) getFragmentManager().findFragmentById(R.id.note_list);
+        listFrag.refreshList();
     }
 }

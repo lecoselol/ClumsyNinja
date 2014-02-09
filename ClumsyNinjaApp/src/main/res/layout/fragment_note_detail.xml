@@ -9,11 +9,13 @@
           tools:context="lecoselol.clumsyninja.NoteDetailFragment">
 
     <lecoselol.clumsyninja.figherie.FontEditText
+            android:id="@+id/txt_iltitolodellacard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/BucoPerIlTestoMaColorato.Titoloso"/>
 
     <lecoselol.clumsyninja.figherie.FontEditText
+            android:id="@+id/txt_elcuerpodelsenhorcardo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/BucoPerIlTestoMaColorato"/>

@@ -24,7 +24,8 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
     public static final String ARG_ITEM_ID = "item_id";
 
     private Note mItem;
-    private View mRootView;
+    private TextView mTitleView;
+    private TextView mBodyView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -39,26 +40,51 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
 
         if (getArguments().containsKey(ARG_ITEM_ID) &&
             getArguments().getInt(ARG_ITEM_ID) >= 0) {
-            AsyncAllTheThings.selectAllTheNotes(this, "DAT PIN");    // TODO get dat PIN
+            AsyncAllTheThings.selectAllTheNotes(this, NinjaApplication.getUserKey());
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_note_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_note_detail, container, false);
+        mTitleView = ((TextView) rootView.findViewById(R.id.txt_iltitolodellacard));
+        mBodyView = ((TextView) rootView.findViewById(R.id.txt_elcuerpodelsenhorcardo));
 
-        return mRootView;
+        return rootView;
     }
 
     @Override
     public void execute(Collection<Note> notes) {
         // Assumes Roberto can do anything right
-        mItem = ((ArrayList<Note>) notes).get(getArguments().getInt(ARG_ITEM_ID));
+        if (notes.size() > 0) {
+            mItem = ((ArrayList<Note>) notes).get(getArguments().getInt(ARG_ITEM_ID));
+        }
 
         if (mItem != null) {
-            ((TextView) mRootView.findViewById(R.id.txt_iltitolodellacard)).setText(mItem.getTitle());
-            ((TextView) mRootView.findViewById(R.id.txt_elcuerpodelsenhorcardo)).setText(mItem.getBody());
+
+            mTitleView.setText(mItem.getTitle());
+            mBodyView.setText(mItem.getBody());
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mItem == null) {
+            AsyncAllTheThings.insertNote(getSafeText(mTitleView),
+                                         getSafeText(mBodyView),
+                                         NinjaApplication.getUserKey());
+        }
+        else {
+            AsyncAllTheThings.editNote(mItem);
+        }
+    }
+
+    private static String getSafeText(TextView v) {
+        CharSequence text = v.getText();
+
+        return text != null ? text.toString() : null;
     }
 }
