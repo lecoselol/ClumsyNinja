@@ -12,31 +12,27 @@ import lecoselol.clumsyninja.figherie.CosiGirevoli;
 /**
  * Where rotating things are.
  */
-public class RotationFragment extends Fragment implements NinjaSensor.RotationListener
-{
-    private static final float ANGLE = (float)Math.toRadians(30);
+public class RotationFragment extends Fragment implements NinjaSensor.RotationListener {
+    private static final float ANGLE = (float) Math.toRadians(30);
 
     private CosiGirevoli cosiGirevoli;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootto = inflater.inflate(R.layout.fragment_rotation, container, false);
         // ah ah ah such a funny name
-        cosiGirevoli = (CosiGirevoli)rootto.findViewById(R.id.i_cosi_girano);
+        cosiGirevoli = (CosiGirevoli) rootto.findViewById(R.id.i_cosi_girano);
         return rootto;
     }
 
     @Override
-    public void onDestroyView()
-    {
+    public void onDestroyView() {
         super.onDestroyView();
         cosiGirevoli = null;
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         finished = false;
         NinjaSensor.initialize(getActivity());
@@ -44,14 +40,12 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
         if (!finished) unregisterSensor();
     }
 
-    private void unregisterSensor()
-    {
+    private void unregisterSensor() {
         NinjaSensor.unregisterListener(this);
         initialAngles = null;
     }
@@ -60,12 +54,10 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
     private boolean finished;
 
     @Override
-    public void onRotationChanged(float[] rotationVector)
-    {
+    public void onRotationChanged(float[] rotationVector) {
         if (finished) return;
 
-        if (initialAngles == null)
-        {
+        if (initialAngles == null) {
             initialAngles = rotationVector;
             return;
         }
@@ -74,24 +66,22 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
         //final float angleX = rotationVector[1] - initialAngles[1]; // YOU TOO, BUT I LIKE YOU
         final float angleY = rotationVector[2] - initialAngles[2];
         final float position = angleY / ANGLE;
-        if (position < 0) initialAngles = rotationVector;
-        else if (position > 1)
-        {
+        if (position < 0) {
+            initialAngles = rotationVector;
+        }
+        else if (position > 1) {
             //initialAngles[0] = rotationVector[0] - ANGLE;
             //initialAngles[1] = rotationVector[1] - ANGLE;
             initialAngles[2] = rotationVector[2] - ANGLE;
         }
         cosiGirevoli.setPlaybackPosition(position);
-        if (position >= 1)
-        {
+        if (position >= 1) {
             finished = true;
             unregisterSensor();
 
-            new AsyncTask<Void,Void,Void>()
-            {
+            new AsyncTask<Void, Void, Void>() {
                 @Override
-                protected Void doInBackground(Void... voids)
-                {
+                protected Void doInBackground(Void... voids) {
                     NinjaVibrator.initalize(getActivity());
                     NinjaVibrator.vibrate(10);
 

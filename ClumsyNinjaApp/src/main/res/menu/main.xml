@@ -3,9 +3,9 @@
       tools:context="lecoselol.clumsyninja.PinActivity">
 
     <item
-        android:id="@+id/action_add"
-        android:title="@string/action_add"
-        android:icon="@drawable/ic_action_add"
-        android:orderInCategory="100"
-        android:showAsAction="always"/>
+            android:id="@+id/action_add"
+            android:title="@string/action_add"
+            android:icon="@drawable/ic_action_add"
+            android:orderInCategory="100"
+            android:showAsAction="always"/>
 </menu>

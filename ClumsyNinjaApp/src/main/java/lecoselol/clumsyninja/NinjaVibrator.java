@@ -7,13 +7,11 @@ import android.os.Vibrator;
  * 08/02/14
  * Created by takhion
  */
-public class NinjaVibrator
-{
+public class NinjaVibrator {
     private static Vibrator vibrator; // kinky
 
-    public static void initalize(Context context)
-    {
-        vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+    public static void initalize(Context context) {
+        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (!vibrator.hasVibrator()) vibrator = null;
     }
 
@@ -21,8 +19,7 @@ public class NinjaVibrator
      * You dirty, dirty one.<br>
      * Also, <em>bzzzzzzz</em>.
      */
-    public static void vibrate(long duration)
-    {
+    public static void vibrate(long duration) {
         if (vibrator != null) vibrator.vibrate(duration);
     }
 }

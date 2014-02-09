@@ -24,8 +24,7 @@ import android.view.MenuItem;
  * to listen for item selections.
  */
 public class NoteListActivity extends Activity
-        implements NoteListFragment.Callbacks
-{
+    implements NoteListFragment.Callbacks {
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -33,15 +32,13 @@ public class NoteListActivity extends Activity
     private boolean mTwoPane;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(false);
 
-        if (findViewById(R.id.note_detail_container) != null)
-        {
+        if (findViewById(R.id.note_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
             // res/values-sw600dp). If this view is present, then the
@@ -50,17 +47,16 @@ public class NoteListActivity extends Activity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            ((NoteListFragment)getFragmentManager()
-                    .findFragmentById(R.id.note_list))
-                    .setActivateOnItemClick(true);
+            ((NoteListFragment) getFragmentManager()
+                .findFragmentById(R.id.note_list))
+                .setActivateOnItemClick(true);
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = new MenuInflater(this);
         inflater.inflate(R.menu.main, menu);
 
@@ -68,11 +64,9 @@ public class NoteListActivity extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home)
-        {
+        if (id == android.R.id.home) {
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. Use NavUtils to allow users
             // to navigate up one level in the application structure. For
@@ -83,20 +77,17 @@ public class NoteListActivity extends Activity
             lockStuffUp();
             return true;
         }
-        else if (id == R.id.action_add)
-        {
+        else if (id == R.id.action_add) {
             aggiungiUnaRobaAllaListaDelleCose();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void lockStuffUp()
-    {
+    private void lockStuffUp() {
         // TODO relock your shit
     }
 
-    private void aggiungiUnaRobaAllaListaDelleCose()
-    {
+    private void aggiungiUnaRobaAllaListaDelleCose() {
         // TODO CRUD at its finest goes in here
     }
 
@@ -105,10 +96,8 @@ public class NoteListActivity extends Activity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(String id)
-    {
-        if (mTwoPane)
-        {
+    public void onItemSelected(String id) {
+        if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
@@ -121,8 +110,7 @@ public class NoteListActivity extends Activity
                                 .commit();
 
         }
-        else
-        {
+        else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, NoteDetailActivity.class);

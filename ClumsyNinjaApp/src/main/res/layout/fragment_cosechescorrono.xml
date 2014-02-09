@@ -4,18 +4,18 @@
              android:layout_height="match_parent">
 
     <com.etsy.android.grid.StaggeredGridView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:item_margin="8dp"
-        app:column_count_portrait="2"
-        app:column_count_landscape="3"/>
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:item_margin="8dp"
+            app:column_count_portrait="2"
+            app:column_count_landscape="3"/>
 
     <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ADD SOME FUCKING NOTE HERE YOU MORON"
-        style="@style/badasstext"/>
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ADD SOME FUCKING NOTE HERE YOU MORON"
+            style="@style/badasstext"/>
 
 </FrameLayout>
