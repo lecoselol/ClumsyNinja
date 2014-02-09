@@ -42,11 +42,10 @@ public class MajesticAdapter extends BaseAdapter implements Filterable {
             (LayoutInflater) NinjaApplication.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (null == view) {
-            //TODO inserire il layout del singolo elemento
             holder = new ViewHolder();
-            //view = inflater.inflate(R.layout.main, null); //TODO modificare qui
-            //holder.title = view.findViewById(R.id.txtTitle);
-            //holder.body = view.findViewById(R.id.txtBody);
+            view = inflater.inflate(R.layout.senor_cardo, null);
+            holder.title = (TextView) view.findViewById(R.id.txt_iltitolodellacard);
+            holder.body = (TextView)view.findViewById(R.id.txt_elcuerpodelsenhorcardo);
             view.setTag(holder);
         }
         else {
