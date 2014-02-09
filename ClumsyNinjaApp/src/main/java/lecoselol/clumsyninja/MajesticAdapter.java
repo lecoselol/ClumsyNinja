@@ -12,43 +12,36 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MajesticAdapter extends BaseAdapter implements Filterable
-{
+public class MajesticAdapter extends BaseAdapter implements Filterable {
     private ArrayList<Note> notes, originalNotes;
 
-    public MajesticAdapter(Collection<Note> notes)
-    {
-        this.notes = (ArrayList<Note>)notes;
-        this.originalNotes = (ArrayList<Note>)notes;
+    public MajesticAdapter(Collection<Note> notes) {
+        this.notes = (ArrayList<Note>) notes;
+        this.originalNotes = (ArrayList<Note>) notes;
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return notes.size();
     }
 
     @Override
-    public Object getItem(int i)
-    {
+    public Object getItem(int i) {
         return notes.get(i);
     }
 
     @Override
-    public long getItemId(int i)
-    {
+    public long getItemId(int i) {
         return notes.get(i).getId();
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup)
-    {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder;
         final LayoutInflater inflater =
-                (LayoutInflater)NinjaApplication.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            (LayoutInflater) NinjaApplication.getInstance().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (null == view)
-        {
+        if (null == view) {
             //TODO inserire il layout del singolo elemento
             holder = new ViewHolder();
             //view = inflater.inflate(R.layout.main, null); //TODO modificare qui
@@ -56,8 +49,9 @@ public class MajesticAdapter extends BaseAdapter implements Filterable
             //holder.body = view.findViewById(R.id.txtBody);
             view.setTag(holder);
         }
-        else
-            holder = (ViewHolder)view.getTag();
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
 
         final Note currentNote = notes.get(position);
 
@@ -68,27 +62,22 @@ public class MajesticAdapter extends BaseAdapter implements Filterable
     }
 
     @Override
-    public Filter getFilter()
-    {
-        return new Filter()
-        {
+    public Filter getFilter() {
+        return new Filter() {
             @Override
-            protected FilterResults performFiltering(CharSequence charSequence)
-            {
+            protected FilterResults performFiltering(CharSequence charSequence) {
                 FilterResults results = new FilterResults();
 
-                if (charSequence.length() == 0)
-                {
+                if (charSequence.length() == 0) {
                     results.values = originalNotes;
                     notes = originalNotes; //reset previous state
                 }
-                else
-                {
+                else {
                     ArrayList<Note> filteredNotes = new ArrayList<>();
-                    for (Note note : notes)
-                    {
-                        if (note.getTitle().contains(charSequence) || note.getBody().contains(charSequence))
+                    for (Note note : notes) {
+                        if (note.getTitle().contains(charSequence) || note.getBody().contains(charSequence)) {
                             filteredNotes.add(note);
+                        }
                     }
                     results.values = filteredNotes;
                 }
@@ -96,16 +85,14 @@ public class MajesticAdapter extends BaseAdapter implements Filterable
             }
 
             @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults)
-            {
-                notes = (ArrayList<Note>)filterResults.values;
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                notes = (ArrayList<Note>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
     }
 
-    private class ViewHolder
-    {
+    private class ViewHolder {
         TextView title, body;
     }
 }
