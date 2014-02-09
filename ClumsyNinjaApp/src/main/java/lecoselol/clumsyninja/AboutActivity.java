@@ -1,7 +1,12 @@
 package lecoselol.clumsyninja;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +17,15 @@ public class AboutActivity extends Activity implements View.OnClickListener
 {
     ImageView elSenorCardoCuandoSeHaceClicar;
     TextView  txtLeCoseLOL, txtSebastiano, txtEugenio, txtAntonio, txtRoberto;
+
+    final static String[] messagesElCardo = { "¡Ahiahiahi! ¡Que dolor! ¡No me cliques! ¡Clica a los autores!",
+                                              "¡Ay caramba! ¡Qué dolor!",
+                                              "¡Te he dicho que no me cliques!",
+                                              "¡BASTA! ¡Te lo digo para la ultima vez!",
+                                              "¡Muahahahahah! El Cardo quiere todos los PokeMones... ¡Hazte con Todos!"
+    };
+
+    static int timesElCardoHasBeenClicked = 0;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -63,15 +77,35 @@ public class AboutActivity extends Activity implements View.OnClickListener
                 startTwitter("LECOSELOL");
                 break;
         }
+
     }
 
-    private final void elSenorCardoHaSidoClicado()
+    private void elSenorCardoHaSidoClicado()
     {
-        SplendidToast.showLonger(NinjaApplication.getInstance(),
-                                 "¡Ahiahiahi! ¡Que dolor! ¡No me cliques! ¡Clica a los autores!");
+        if (timesElCardoHasBeenClicked >= messagesElCardo.length) timesElCardoHasBeenClicked = 0;
+
+        SplendidToast.showLonger(NinjaApplication.getInstance(), messagesElCardo[timesElCardoHasBeenClicked]);
+
+        if (timesElCardoHasBeenClicked == messagesElCardo.length - 1)
+        {
+            NinjaApplication.playSoundAsync(R.raw.senhoramusica);
+
+            final Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_stat_pikachu);
+            Notification.Builder notificationBuilder = new Notification.Builder(this)
+                    .setContentTitle("You can't stop the music!")
+                    .setContentText("until you catch'em all!")
+                    .setSmallIcon(R.drawable.ic_stat_pikachu)
+                    .setLargeIcon(largeIcon);
+
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(0, notificationBuilder.build());
+        }
+
+        timesElCardoHasBeenClicked++;
     }
 
-    private final void startTwitter(String user)
+    private void startTwitter(String user)
     {
         final String url = "https://twitter.com/" + user;
         Intent urlIntent = new Intent(Intent.ACTION_VIEW);
