@@ -8,32 +8,44 @@ import android.content.IntentFilter;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 
-public class NinjaApplication extends Application {
+public class NinjaApplication extends Application
+{
     private static NinjaApplication instance;
     private static String userKey = "";
 
-    public NinjaApplication() {
+    public NinjaApplication()
+    {
         instance = this;
     }
 
-    public static NinjaApplication getInstance() {
+    public static NinjaApplication getInstance()
+    {
         return instance;
     }
 
-    public static void registerUser(String newUserKey) {
+    public static void registerUser(String newUserKey)
+    {
         userKey = newUserKey;
     }
 
-    public static void unregisterUser() {
+    public static void unregisterUser()
+    {
         userKey = "";
     }
 
-    public static boolean isUserRegistered() {
+    public static String getUserKey()
+    {
+        return userKey;
+    }
+
+    public static boolean isUserRegistered()
+    {
         return (userKey.length() > 0);
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
 
         // Handles screen off
@@ -43,45 +55,58 @@ public class NinjaApplication extends Application {
         registerReceiver(receiver, filter);
     }
 
-    private static final class ScreenOffReceiver extends BroadcastReceiver {
+    private static final class ScreenOffReceiver extends BroadcastReceiver
+    {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void onReceive(Context context, Intent intent)
+        {
             unregisterUser();
         }
     }
 
-    public static void playSoundAsync(int resid) {
+    public static void playSoundAsync(int resid)
+    {
         final MediaPlayer mp = new MediaPlayer();
         AssetFileDescriptor afd = null;
-        try {
+        try
+        {
             afd = NinjaApplication.getInstance().getResources().openRawResourceFd(resid);
             mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             e.printStackTrace();
-            try {
+            try
+            {
                 if (afd != null) afd.close();
                 mp.release();
             }
-            catch (Exception ignore) {
+            catch (Exception ignore)
+            {
             }
             return;
         }
         final AssetFileDescriptor _afd = afd;
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+        {
             @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
+            public void onPrepared(MediaPlayer mediaPlayer)
+            {
                 mediaPlayer.start();
             }
         });
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+        {
             @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
+            public void onCompletion(MediaPlayer mediaPlayer)
+            {
                 mediaPlayer.release();
-                try {
+                try
+                {
                     _afd.close();
                 }
-                catch (Exception ignore) {
+                catch (Exception ignore)
+                {
                 }
             }
         });

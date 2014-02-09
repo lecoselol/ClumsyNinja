@@ -12,7 +12,7 @@ public class PasswordManager {
         return context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
-    private static String getPassword(Context context) {
+    public static String getPassword(Context context) {
         final SharedPreferences prefs = getPreferences(context);
         return prefs.getString(PASSWORD_KEY, PASSWORD_DEFAULT_VALUE);
     }
