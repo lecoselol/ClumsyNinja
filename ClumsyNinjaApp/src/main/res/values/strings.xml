@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ClumsyNinja</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">MinchiaNinja</string>
+    <string name="hello_world">RRRAMADAAAAAAAA!</string>
     <string name="action_add">Settings</string>
     <string name="title_note_list">Notes</string>
     <string name="title_note_detail">Note Detail</string>
