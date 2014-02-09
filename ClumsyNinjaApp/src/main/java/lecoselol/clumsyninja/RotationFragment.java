@@ -2,8 +2,7 @@ package lecoselol.clumsyninja;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +38,7 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
     public void onResume()
     {
         super.onResume();
+        finished = false;
         NinjaSensor.initialize(getActivity());
         NinjaSensor.registerListener(this);
     }
@@ -47,15 +47,23 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
     public void onPause()
     {
         super.onPause();
+        if (!finished) unregisterSensor();
+    }
+
+    private void unregisterSensor()
+    {
         NinjaSensor.unregisterListener(this);
         initialAngles = null;
     }
 
     private float[] initialAngles = null;
+    private boolean finished;
 
     @Override
     public void onRotationChanged(float[] rotationVector)
     {
+        if (finished) return;
+
         if (initialAngles == null)
         {
             initialAngles = rotationVector;
@@ -69,42 +77,31 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
         if (position < 0) initialAngles = rotationVector;
         else if (position > 1)
         {
-            initialAngles[0] = rotationVector[0] - ANGLE;
-            initialAngles[1] = rotationVector[1] - ANGLE;
+            //initialAngles[0] = rotationVector[0] - ANGLE;
+            //initialAngles[1] = rotationVector[1] - ANGLE;
             initialAngles[2] = rotationVector[2] - ANGLE;
         }
         cosiGirevoli.setPlaybackPosition(position);
         if (position >= 1)
         {
-            NinjaVibrator.initalize(getActivity());
-            NinjaVibrator.vibrate(10);
+            finished = true;
+            unregisterSensor();
 
-            Thread stealthyPlayer = new Thread(new Runnable()
+            new AsyncTask<Void,Void,Void>()
             {
                 @Override
-                public void run()
+                protected Void doInBackground(Void... voids)
                 {
-                    System.out.println("LOL I DONT KNOW WHAT IM DOING HERE");
-                    MediaPlayer mp = new MediaPlayer();
-                    AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.alarm);
-                    try
-                    {
-                        mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                        mp.prepare();
-                        mp.start();
-                        afd.close();
-                    }
-                    catch (Exception e)
-                    {
-                        // FANCULO
-                    }
+                    NinjaVibrator.initalize(getActivity());
+                    NinjaVibrator.vibrate(10);
 
+                    NinjaApplication.playSoundAsync(R.raw.alarm);
+
+                    startActivity(new Intent(getActivity(), NoteListActivity.class));
+
+                    return null;
                 }
-            });
-            stealthyPlayer.setName("FUCK YOU DORPHIIIIINSSSS");
-            stealthyPlayer.start();    // This is a badass thread we have here guys
-
-            startActivity(new Intent(getActivity(), NoteListActivity.class));
+            }.execute();
         }
     }
 }

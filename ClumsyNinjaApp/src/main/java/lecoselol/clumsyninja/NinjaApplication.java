@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 
 public class NinjaApplication extends Application
 {
@@ -55,5 +57,54 @@ public class NinjaApplication extends Application
         {
             unregisterUser();
         }
+    }
+
+    public static void playSoundAsync(int resid)
+    {
+        final MediaPlayer mp = new MediaPlayer();
+        AssetFileDescriptor afd = null;
+        try
+        {
+            afd = NinjaApplication.getInstance().getResources().openRawResourceFd(resid);
+            mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            try
+            {
+                if (afd != null) afd.close();
+                mp.release();
+            }
+            catch (Exception ignore)
+            {
+            }
+            return;
+        }
+        final AssetFileDescriptor _afd = afd;
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
+        {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer)
+            {
+                mediaPlayer.start();
+            }
+        });
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+        {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer)
+            {
+                mediaPlayer.release();
+                try
+                {
+                    _afd.close();
+                }
+                catch (Exception ignore)
+                {
+                }
+            }
+        });
+        mp.prepareAsync();
     }
 }
