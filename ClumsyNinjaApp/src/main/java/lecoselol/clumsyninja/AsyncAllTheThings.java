@@ -134,7 +134,7 @@ public class AsyncAllTheThings
             if (anyError)
             {
                 //TODO insert Emoji
-                final String errorMessage = NinjaApplication.getInstance().getString(R.string.DECRYPT_NOTE_ERROR);
+                final String errorMessage = NinjaApplication.getInstance().getString(R.string.decrypt_note_error);
                 SplendidToast.show(NinjaApplication.getInstance(), errorMessage);
             }
 
