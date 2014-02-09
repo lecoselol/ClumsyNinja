@@ -46,4 +46,8 @@ public class Note {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public String getShareableString() {
+        return String.format("[%s] %s", title, body);
+    }
 }

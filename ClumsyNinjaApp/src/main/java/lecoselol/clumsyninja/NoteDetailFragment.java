@@ -2,9 +2,7 @@ package lecoselol.clumsyninja;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_SHOWMENU = "showmenu";
 
     private Note mItem;
     private TextView mTitleView;
@@ -62,7 +61,6 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
         }
 
         if (mItem != null) {
-
             mTitleView.setText(mItem.getTitle());
             mBodyView.setText(mItem.getBody());
         }
@@ -86,5 +84,10 @@ public class NoteDetailFragment extends Fragment implements AsyncAllTheThings.Ca
         CharSequence text = v.getText();
 
         return text != null ? text.toString() : null;
+    }
+
+
+    public Note getItem() {
+        return mItem;
     }
 }

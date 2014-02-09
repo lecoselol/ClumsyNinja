@@ -117,6 +117,7 @@ public class NoteListActivity extends Activity
             Bundle arguments = new Bundle();
             int idNum = id != null ? Integer.parseInt(id) : -1;
             arguments.putInt(NoteDetailFragment.ARG_ITEM_ID, idNum);
+            arguments.putBoolean(NoteDetailFragment.ARG_SHOWMENU, true);
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
