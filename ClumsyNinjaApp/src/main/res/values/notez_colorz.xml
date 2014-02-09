@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="bianco">#f5f5f5</color>
+    <color name="rosso">#f56545</color>
+    <color name="arancione">#ffbb22</color>
+    <color name="giallo">#eeee22</color>
+    <color name="grigio">#b5c5c5</color>
+    <color name="azzurro">#66ccdd</color>
+    <color name="verzurro">#77ddbb</color>
+    <color name="melerde">#bbe535</color>
+
+</resources>
