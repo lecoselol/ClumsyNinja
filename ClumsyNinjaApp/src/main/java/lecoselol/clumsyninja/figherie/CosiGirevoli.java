@@ -11,30 +11,34 @@ import lecoselol.clumsyninja.R;
 /**
  * Gira tutto!!1! Mi sa che sono sbronzo nero.
  */
-public class CosiGirevoli extends View {
-
+public class CosiGirevoli extends View
+{
     private float mPlaybackPosition = 0f;
 
-    private Paint mPaint;
-    private RectF mArcAreas[];
+    private Paint   mPaint;
+    private RectF   mArcAreas[];
     private float[] mArcStarts;
     private float[] mArcLength;
 
-    public CosiGirevoli(Context context) {
+    public CosiGirevoli(Context context)
+    {
         super(context);
         initCrap();
     }
 
-    public CosiGirevoli(Context context, AttributeSet attrs) {
+    public CosiGirevoli(Context context, AttributeSet attrs)
+    {
         this(context, attrs, 0);
     }
 
-    public CosiGirevoli(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CosiGirevoli(Context context, AttributeSet attrs, int defStyleAttr)
+    {
         super(context, attrs, defStyleAttr);
         initCrap();
     }
 
-    private void initCrap() {
+    private void initCrap()
+    {
         mPaint = new Paint();
         mPaint.setColor(getResources().getColor(R.color.ninjaminchia_color));
         mPaint.setStrokeWidth(getResources().getDimension(R.dimen.arc_width));
@@ -43,12 +47,13 @@ public class CosiGirevoli extends View {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
 
         mArcAreas = new RectF[3];
-        mArcStarts = new float[] {70, 150, 180};
-        mArcLength = new float[] {170, 77, 105};
+        mArcStarts = new float[] { 70, 150, 180 };
+        mArcLength = new float[] { 170, 77, 105 };
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh)
+    {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // Just take the biggest square contained in the view bounds
@@ -70,7 +75,8 @@ public class CosiGirevoli extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         super.onDraw(canvas);
 
         drawCosettoFico(canvas, 0);
@@ -78,7 +84,8 @@ public class CosiGirevoli extends View {
         drawCosettoFico(canvas, 2);
     }
 
-    private void drawCosettoFico(Canvas canvas, int index) {
+    private void drawCosettoFico(Canvas canvas, int index)
+    {
         // StartPos = (ArcFinalPos - ArcStartPos) * PlayPosition
         // ArcFinalPos = 360 - ArcLength / 2
         final float finalPos = 360 - mArcLength[index] / 2f;
@@ -96,11 +103,14 @@ public class CosiGirevoli extends View {
      *
      * @param position The new playback position (0 >= position >= 1).
      */
-    public void setPlaybackPosition(float position) {
-        if (position < 0f) {
+    public void setPlaybackPosition(float position)
+    {
+        if (position < 0f)
+        {
             position = 0f;
         }
-        else if (position > 1f) {
+        else if (position > 1f)
+        {
             position = 1f;
         }
 
@@ -117,7 +127,8 @@ public class CosiGirevoli extends View {
      *
      * @return Returns the playback position (0 >= position >= 1).
      */
-    public float getPlaybackPosition() {
+    public float getPlaybackPosition()
+    {
         return mPlaybackPosition;
     }
 }

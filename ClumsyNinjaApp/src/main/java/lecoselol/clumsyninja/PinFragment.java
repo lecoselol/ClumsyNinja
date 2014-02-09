@@ -12,19 +12,21 @@ import android.widget.Toast;
 /**
  * You're supposed to input your PIN in this thing.
  */
-public class PinFragment extends Fragment {
-
-    private TextView mPinText;
+public class PinFragment extends Fragment
+{
+    private TextView             mPinText;
     private OnPinChangedListener mListener;
     private String mPin = "";
 
-    public void setListener(OnPinChangedListener listener) {
+    public void setListener(OnPinChangedListener listener)
+    {
         mListener = listener;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         View rootView = inflater.inflate(R.layout.fragment_pin, container, false);
         PinPadListener l = new PinPadListener();
 
@@ -40,18 +42,23 @@ public class PinFragment extends Fragment {
         rootView.findViewById(R.id.txt_oito).setOnClickListener(l);
         rootView.findViewById(R.id.txt_dziewięć).setOnClickListener(l);
         rootView.findViewById(R.id.txt_null).setOnClickListener(l);
-        rootView.findViewById(R.id.txt_null).setOnLongClickListener(new View.OnLongClickListener() {
+        rootView.findViewById(R.id.txt_null).setOnLongClickListener(new View.OnLongClickListener()
+        {
             @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(v.getContext(), "Fun fact: this is actually ZERO in Norwegian.", Toast.LENGTH_LONG).show();
+            public boolean onLongClick(View v)
+            {
+                Toast.makeText(v.getContext(), "Fun fact: this is actually ZERO in Norwegian.", Toast.LENGTH_LONG)
+                     .show();
                 return true;
             }
         });
 
-        mPinText = (TextView) rootView.findViewById(R.id.txt_pin);
-        mPinText.setOnClickListener(new View.OnClickListener() {
+        mPinText = (TextView)rootView.findViewById(R.id.txt_pin);
+        mPinText.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 removeNumber();
             }
         });
@@ -59,42 +66,52 @@ public class PinFragment extends Fragment {
         return rootView;
     }
 
-    public void addNumber(char num) {
+    public void addNumber(char num)
+    {
         mPin = mPin + num;
         mPinText.setText(mPin);
 
-        if (mListener != null) {
+        if (mListener != null)
+        {
             mListener.onPinChanged(mPin);
         }
     }
 
-    public void removeNumber() {
-        if (!TextUtils.isEmpty(mPin)) {
+    public void removeNumber()
+    {
+        if (!TextUtils.isEmpty(mPin))
+        {
             mPin = mPin.substring(0, mPin.length() - 1);
             mPinText.setText(mPin);
 
-            if (mListener != null) {
+            if (mListener != null)
+            {
                 mListener.onPinChanged(mPin);
             }
         }
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         mPin = "";
         mPinText.setText(mPin);
     }
 
-    public String getPin() {
+    public String getPin()
+    {
         return mPin;
     }
 
-    public class PinPadListener implements View.OnClickListener {
+    public class PinPadListener implements View.OnClickListener
+    {
 
         @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
+        public void onClick(View v)
+        {
+            switch (v.getId())
+            {
                 // WTF now I'm hating my smartassness
                 case R.id.txt_one:
                     addNumber('1');
@@ -135,7 +152,8 @@ public class PinFragment extends Fragment {
     /**
      * Listener for PIN changes.
      */
-    public interface OnPinChangedListener {
+    public interface OnPinChangedListener
+    {
         public void onPinChanged(String currentPin);
     }
 }

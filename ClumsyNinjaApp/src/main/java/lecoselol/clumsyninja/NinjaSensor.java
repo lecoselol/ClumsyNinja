@@ -12,10 +12,6 @@ import java.util.Map;
 import static android.hardware.Sensor.TYPE_ROTATION_VECTOR;
 import static android.hardware.SensorManager.SENSOR_DELAY_GAME;
 
-/**
- * 08/02/14
- * Created by takhion
- */
 public final class NinjaSensor
 {
     public static final int SENSOR_TYPE  = TYPE_ROTATION_VECTOR;
@@ -126,8 +122,8 @@ public final class NinjaSensor
         }
 
         // Why didn't I use a Queue? Because I dig efficency... ** SO COOL **
-        private final float[][] values = new float[5][];
-        private int valuesIndex = 0;
+        private final float[][] values      = new float[5][];
+        private       int       valuesIndex = 0;
 
         public float[] filter(float[] angles)
         {

@@ -10,14 +10,15 @@ import android.view.MenuItem;
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link NoteListActivity}.
- * <p>
+ * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link NoteDetailFragment}.
  */
-public class NoteDetailActivity extends Activity {
-
+public class NoteDetailActivity extends Activity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_detail);
 
@@ -33,24 +34,27 @@ public class NoteDetailActivity extends Activity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null)
+        {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
             arguments.putString(NoteDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(NoteDetailFragment.ARG_ITEM_ID));
+                                getIntent().getStringExtra(NoteDetailFragment.ARG_ITEM_ID));
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                    .add(R.id.note_detail_container, fragment)
-                    .commit();
+                                .add(R.id.note_detail_container, fragment)
+                                .commit();
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
+        if (id == android.R.id.home)
+        {
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. Use NavUtils to allow users
             // to navigate up one level in the application structure. For
@@ -64,7 +68,8 @@ public class NoteDetailActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void navigateUpTo(Activity activity, Intent upIntent) {
+    private void navigateUpTo(Activity activity, Intent upIntent)
+    {
         upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(upIntent);
         activity.finish();

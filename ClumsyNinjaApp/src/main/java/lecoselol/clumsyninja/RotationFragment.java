@@ -65,7 +65,7 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
         //final float angleZ = rotationVector[0] - initialAngles[0]; // YOU ARE SO SADLY USELESS
         //final float angleX = rotationVector[1] - initialAngles[1]; // YOU TOO, BUT I LIKE YOU
         final float angleY = rotationVector[2] - initialAngles[2];
-        final float position = angleY/ANGLE;
+        final float position = angleY / ANGLE;
         if (position < 0) initialAngles = rotationVector;
         else if (position > 1)
         {
@@ -79,19 +79,23 @@ public class RotationFragment extends Fragment implements NinjaSensor.RotationLi
             NinjaVibrator.initalize(getActivity());
             NinjaVibrator.vibrate(10);
 
-            Thread stealthyPlayer = new Thread(new Runnable() {
+            Thread stealthyPlayer = new Thread(new Runnable()
+            {
                 @Override
-                public void run() {
+                public void run()
+                {
                     System.out.println("LOL I DONT KNOW WHAT IM DOING HERE");
                     MediaPlayer mp = new MediaPlayer();
                     AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.alarm);
-                    try {
+                    try
+                    {
                         mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                         mp.prepare();
                         mp.start();
                         afd.close();
                     }
-                    catch (Exception e) {
+                    catch (Exception e)
+                    {
                         // FANCULO
                     }
 
