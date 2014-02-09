@@ -76,4 +76,17 @@
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
+    <style name="BucoPerIlTestoMaColorato" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/edit_text_holo_light</item>
+        <item name="customFont">senhor_fonto.ttf</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="BucoPerIlTestoMaColorato.Titoloso">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:lines">1</item>
+    </style>
+
 </resources>

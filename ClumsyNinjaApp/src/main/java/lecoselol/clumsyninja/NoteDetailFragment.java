@@ -52,7 +52,7 @@ public class NoteDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.note_detail)).setText(mItem.content);
+            ((TextView) rootView.findViewById(R.id.txt_note_title)).setText(mItem.content);
         }
 
         return rootView;
