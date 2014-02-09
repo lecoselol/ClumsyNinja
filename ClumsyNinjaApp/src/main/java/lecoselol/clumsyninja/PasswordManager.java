@@ -17,6 +17,11 @@ public class PasswordManager {
         return prefs.getString(PASSWORD_KEY, PASSWORD_DEFAULT_VALUE);
     }
 
+    public static void removePassword(Context context) {
+        final SharedPreferences.Editor prefs = getPreferences(context).edit();
+        prefs.remove(PASSWORD_KEY);
+    }
+
     /**
      * Checks if the password given in input matches the one stored locally.
      *

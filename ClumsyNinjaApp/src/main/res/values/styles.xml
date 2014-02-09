@@ -33,12 +33,13 @@
     </style>
 
     <style name="numerello">
-        <item name="android:paddingRight">36dp</item>
+        <item name="android:paddingRight">8dp</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">28sp</item>
         <item name="android:background">@drawable/pinpad_button</item>
     </style>
@@ -61,8 +62,11 @@
 
     <style name="badasstext">
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:layout_margin">24dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/pinpad_button</item>
     </style>
 
     <style name="SenhorCardoText">

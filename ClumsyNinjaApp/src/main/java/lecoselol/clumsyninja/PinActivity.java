@@ -28,6 +28,8 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
         getFragmentManager().addOnBackStackChangedListener(this);
     }
 
+    private String cryptedPin = null;
+
     @Override
     protected void onResume()
     {
@@ -42,9 +44,14 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
             @Override
             protected Boolean doInBackground(Void... voids)
             {
-                final String pin = PasswordManager.getPassword(PinActivity.this);
-                NinjaApplication.registerUser(pin);
-                return pin == null;
+                cryptedPin = PasswordManager.getPassword(PinActivity.this);
+                if (cryptedPin != null && "".equals(cryptedPin))
+                {
+                    cryptedPin = null;
+                    PasswordManager.removePassword(PinActivity.this);
+                }
+                NinjaApplication.registerUser(cryptedPin);
+                return cryptedPin == null;
             }
 
             @Override
@@ -74,22 +81,28 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
     @Override
     public void onPinChanged(String currentPin)
     {
-        final String userPin = NinjaApplication.getUserKey();
-        if (userPin != null && userPin.equals(currentPin))
+        new AsyncVerifyPassword()
         {
-            getFragmentManager().beginTransaction()
-                                .setCustomAnimations(R.animator.fade_rotate_in,
-                                                     R.animator.fade_rotate_out,
-                                                     R.animator.fade_rotate_back_in,
-                                                     R.animator.fade_rotate_back_out)
-                                .replace(R.id.container, new RotationFragment(), FRAG_ROTATION)
-                                .addToBackStack(null)
-                                .commit();
+            @Override
+            protected void onPostExecute(Boolean passMatch)
+            {
+                if (passMatch != null && passMatch)
+                {
+                    getFragmentManager().beginTransaction()
+                                        .setCustomAnimations(R.animator.fade_rotate_in,
+                                                             R.animator.fade_rotate_out,
+                                                             R.animator.fade_rotate_back_in,
+                                                             R.animator.fade_rotate_back_out)
+                                        .replace(R.id.container, new RotationFragment(), FRAG_ROTATION)
+                                        .addToBackStack(null)
+                                        .commit();
 
-            forgetAboutThatPinFragmentDude();
+                    forgetAboutThatPinFragmentDude();
 
-            NinjaApplication.playSoundAsync(R.raw.boom);
-        }
+                    NinjaApplication.playSoundAsync(R.raw.boom);
+                }
+            }
+        }.execute(currentPin);
     }
 
     @Override

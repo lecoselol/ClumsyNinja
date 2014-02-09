@@ -11,7 +11,7 @@ import android.media.MediaPlayer;
 public class NinjaApplication extends Application
 {
     private static NinjaApplication instance;
-    private static String userKey = "";
+    private static String userKey = null;
 
     public NinjaApplication()
     {
@@ -30,7 +30,7 @@ public class NinjaApplication extends Application
 
     public static void unregisterUser()
     {
-        userKey = "";
+        userKey = null;
     }
 
     public static String getUserKey()
@@ -40,7 +40,7 @@ public class NinjaApplication extends Application
 
     public static boolean isUserRegistered()
     {
-        return (userKey.length() > 0);
+        return userKey != null;
     }
 
     @Override

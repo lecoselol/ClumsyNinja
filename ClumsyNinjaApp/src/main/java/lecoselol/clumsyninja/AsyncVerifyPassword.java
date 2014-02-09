@@ -2,7 +2,7 @@ package lecoselol.clumsyninja;
 
 import android.os.AsyncTask;
 
-public class AsyncVerifyPassword extends AsyncTask<String, Void, Boolean> {
+public abstract class AsyncVerifyPassword extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... params) {
         if (params.length == 0) return false;
@@ -22,10 +22,5 @@ public class AsyncVerifyPassword extends AsyncTask<String, Void, Boolean> {
         }
 
         return result;
-    }
-
-    @Override
-    protected void onPostExecute(Boolean aBoolean) {
-        //TODO gestire l'errore / successo
     }
 }

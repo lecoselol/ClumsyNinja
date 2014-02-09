@@ -1,6 +1,7 @@
 package lecoselol.clumsyninja;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * You're supposed to input your PIN in this thing.
@@ -50,7 +54,7 @@ public class PinFragment extends Fragment
             @Override
             public boolean onLongClick(View v)
             {
-                Toast.makeText(v.getContext(), "Fun fact: this is actually ZERO in Norwegian.", Toast.LENGTH_LONG)
+                Toast.makeText(v.getContext(), "Fun fact: this is actually NULL in Norwegian.", Toast.LENGTH_LONG)
                      .show();
                 return true;
             }
@@ -65,7 +69,19 @@ public class PinFragment extends Fragment
                 if (newPin && mPin != null && mPin.length() > 0)
                 {
                     NinjaApplication.registerUser(mPin);
-                    //TODO fare una COSA
+                    String cryptedPin;
+                    try
+                    {
+                        cryptedPin = Crypto.SHA256_orYouDie(mPin);
+                    }
+                    catch (NoSuchAlgorithmException | UnsupportedEncodingException e)
+                    {
+                        e.printStackTrace();
+                        cryptedPin = null;
+                        // IT WILL NEVER HAPPEN ON MY SHINY NEXUS 5
+                    }
+                    PasswordManager.itWasAboutTimeToSetABloodyPassword(getActivity(), cryptedPin);
+                    startActivity(new Intent(getActivity(), NoteListActivity.class));
                 }
             }
         });
