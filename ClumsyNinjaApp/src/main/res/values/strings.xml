@@ -13,5 +13,6 @@
     <string name="new_pin">Please choose a PIN</string>
     <string name="insert_pin">You shall not pass!</string>
     <string name="ok">OK</string>
+    <string name="action_about">About #LECOSELOL</string>
 
 </resources>
