@@ -79,7 +79,7 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
     }
 
     @Override
-    public void onPinChanged(String currentPin)
+    public void onPinChanged(final String currentPin)
     {
         new AsyncVerifyPassword()
         {
@@ -88,6 +88,7 @@ public class PinActivity extends Activity implements PinFragment.OnPinChangedLis
             {
                 if (passMatch != null && passMatch)
                 {
+                    NinjaApplication.registerUser(currentPin);
                     getFragmentManager().beginTransaction()
                                         .setCustomAnimations(R.animator.fade_rotate_in,
                                                              R.animator.fade_rotate_out,
