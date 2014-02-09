@@ -24,5 +24,6 @@ android {
 }
 
 dependencies {
+    compile 'com.etsy.android.grid:library:1.0.+'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
