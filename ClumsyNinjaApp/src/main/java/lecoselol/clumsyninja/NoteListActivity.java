@@ -129,7 +129,8 @@ public class NoteListActivity extends Activity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, NoteDetailActivity.class);
-            detailIntent.putExtra(NoteDetailFragment.ARG_ITEM_ID, id);
+            int idNum = id != null ? Integer.parseInt(id) : -1;
+            detailIntent.putExtra(NoteDetailFragment.ARG_ITEM_ID, idNum);
             startActivity(detailIntent);
         }
     }

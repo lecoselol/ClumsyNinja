@@ -45,8 +45,8 @@ public class NoteDetailActivity extends Activity implements NfcAdapter.CreateNde
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(NoteDetailFragment.ARG_ITEM_ID,
-                                getIntent().getStringExtra(NoteDetailFragment.ARG_ITEM_ID));
+            arguments.putInt(NoteDetailFragment.ARG_ITEM_ID,
+                                getIntent().getIntExtra(NoteDetailFragment.ARG_ITEM_ID, -1));
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
