@@ -121,36 +121,7 @@ public class AsyncAllTheThings
         @Override
         protected ArrayList<Note> doInBackground(Void... voids)
         {
-            final Collection<Note> allTheNotes = EncryptedDatabase.getNotes(NinjaApplication.getInstance());
-
-            ArrayList<Note> decryptedNotes = new ArrayList<Note>();
-
-            boolean anyError = false;
-
-            for (Note cryptedNote : allTheNotes)
-            {
-                try
-                {
-                    Note tmpNote = new Note();
-                    tmpNote.setId(cryptedNote.getId());
-                    tmpNote.setTitle(Crypto.decrypt(key, cryptedNote.getTitle()));
-                    tmpNote.setBody(Crypto.decrypt(key, cryptedNote.getBody()));
-                    decryptedNotes.add(tmpNote);
-                }
-                catch (Exception e)
-                {
-                    anyError = true;
-                }
-            }
-
-            if (anyError)
-            {
-                //TODO insert Emoji
-                final String errorMessage = NinjaApplication.getInstance().getString(R.string.decrypt_note_error);
-                //SplendidToast.show(NinjaApplication.getInstance(), errorMessage);
-            }
-
-            return decryptedNotes;
+            return EncryptedDatabase.getNotes(NinjaApplication.getInstance());
         }
 
 

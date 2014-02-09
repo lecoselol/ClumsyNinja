@@ -178,7 +178,7 @@ public class EncryptedDatabase
      *
      * @return a list of all the encrypted notes present on local database.
      */
-    public static Collection<Note> getNotes(Context context)
+    public static ArrayList<Note> getNotes(Context context)
     {
         final Helper helper = new Helper(context);
         final SQLiteDatabase database = helper.getReadableDatabase();
@@ -188,7 +188,7 @@ public class EncryptedDatabase
         cursor.moveToFirst();
 
         Note tmpNote;
-        Collection<Note> notes = new ArrayList<Note>();
+        ArrayList<Note> notes = new ArrayList<Note>();
 
         while (!cursor.isAfterLast())
         {
