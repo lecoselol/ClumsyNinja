@@ -5,4 +5,6 @@
 
     <dimen name="arc_inset_delta">20dp</dimen>
     <dimen name="arc_width">8dp</dimen>
+
+    <dimen name="actionbar_text_size">24dp</dimen>
 </resources>
