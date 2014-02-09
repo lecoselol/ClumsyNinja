@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/statusbar_background"
+            android:drawable="@drawable/statusbar_cab_background"/>
+
+    <!-- should use @android:dimen/status_bar_height but it's not public... WHY GOOGLE?! -->
+    <item
+            android:id="@+id/window_background"
+            android:top="25dp"
+            android:drawable="@drawable/window_background"/>
+
+</layer-list>

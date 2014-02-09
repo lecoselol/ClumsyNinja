@@ -50,6 +50,8 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
             // Inflate a menu resource providing context menu items
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.context_menu, menu);
+            getActivity().getWindow().setBackgroundDrawable(
+                    getActivity().getResources().getDrawable(R.drawable.extended_window_cab_background));
             return true;
         }
 
@@ -81,6 +83,8 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             mActionMode = null;
+            getActivity().getWindow().setBackgroundDrawable(
+                    getActivity().getResources().getDrawable(R.drawable.extended_window_background));
         }
     };
 

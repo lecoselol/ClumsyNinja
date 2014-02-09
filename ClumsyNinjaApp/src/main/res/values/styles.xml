@@ -2,6 +2,7 @@
 
     <!-- put the desired backgrounds here -->
     <drawable name="statusbar_background">#ff8800</drawable>
+    <drawable name="statusbar_cab_background">#555555</drawable>
     <drawable name="window_background">#ffeeeeee</drawable>
 
     <!-- Base application theme. -->
