@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import lecoselol.clumsyninja.figherie.SenhorToast;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -141,6 +142,11 @@ public class PinFragment extends Fragment
     {
         this.newPin = newPin;
         setTitle(newPin ? R.string.new_pin : R.string.insert_pin);
+        if (newPin && getActivity() != null) {
+            SenhorToast toast = new SenhorToast(getActivity());
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public String getPin()

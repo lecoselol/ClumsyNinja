@@ -1,6 +1,7 @@
 package lecoselol.clumsyninja;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,15 @@ public class MajesticAdapter extends BaseAdapter implements Filterable {
 
         final Note currentNote = notes.get(position);
 
-        holder.title.setText(currentNote.getTitle());
+        final String title = currentNote.getTitle();
+        if (TextUtils.isEmpty(title)) {
+            holder.title.setVisibility(View.GONE);
+        }
+        else {
+            holder.title.setVisibility(View.VISIBLE);
+            holder.title.setText(title);
+        }
+
         holder.body.setText(currentNote.getBody());
 
         return view;
