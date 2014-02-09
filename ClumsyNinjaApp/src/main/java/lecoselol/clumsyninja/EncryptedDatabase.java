@@ -22,15 +22,13 @@ public class EncryptedDatabase {
     }
 
     //Separators - Operators
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA = ",";
+    private static final String TEXT_TYPE = "TEXT";
     private static final String ID_SELECTION = NoteTable._ID + " = ?";
 
     //Queries
-    private static final String CREATE_TABLE = "CREATE TABLE " + NoteTable.TABLE_NAME + " (" +
-                                               NoteTable._ID + " INTEGER PRIMARY KEY," +
-                                               NoteTable.NOTE_TITLE + TEXT_TYPE + COMMA +
-                                               NoteTable.NOTE_BODY + TEXT_TYPE + COMMA + " )";
+    private static final String CREATE_TABLE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s %s, %s %s)",
+                                                             NoteTable.TABLE_NAME, NoteTable._ID, NoteTable.NOTE_TITLE,
+                                                             TEXT_TYPE, NoteTable.NOTE_BODY, TEXT_TYPE);
 
     private static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + NoteTable.TABLE_NAME;
 
@@ -155,8 +153,6 @@ public class EncryptedDatabase {
 
         final Cursor cursor = database.query(NoteTable.TABLE_NAME, null, null, null, null, null, null);
 
-        database.close();
-
         cursor.moveToFirst();
 
         Note tmpNote;
@@ -174,6 +170,8 @@ public class EncryptedDatabase {
 
             cursor.moveToNext();
         }
+
+        database.close();
 
         return notes;
     }
