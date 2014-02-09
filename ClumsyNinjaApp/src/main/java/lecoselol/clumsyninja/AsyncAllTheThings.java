@@ -20,7 +20,7 @@ public class AsyncAllTheThings
 
     private static final class Insert extends AsyncTask<Void, Void, Void>
     {
-        private String title, text, key;
+        private final String title, text, key;
 
         public Insert(String title, String text, String key)
         {
@@ -89,7 +89,14 @@ public class AsyncAllTheThings
         protected Void doInBackground(Note... notes)
         {
             if (notes.length > 0)
-                EncryptedDatabase.editNote(NinjaApplication.getInstance(), notes[0]);
+            {
+                final Context app = NinjaApplication.getInstance();
+                if (EncryptedDatabase.editNote(NinjaApplication.getInstance(), notes[0]) > 0)
+                {
+                    final Collection<Note> allTheNotes = EncryptedDatabase.getNotes(app);
+                    NoteBaasboxService.update(app, allTheNotes);
+                }
+            }
 
             return null;
         }
