@@ -48,7 +48,7 @@ public class CosiGirevoli extends View
 
         mArcAreas = new RectF[3];
         mArcStarts = new float[] { 70, 150, 180 };
-        mArcLength = new float[] { 170, 77, 105 };
+        mArcLength = new float[] { 180, 180, 180 };
     }
 
     @Override
