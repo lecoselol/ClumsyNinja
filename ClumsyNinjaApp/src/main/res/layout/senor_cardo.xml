@@ -3,6 +3,7 @@
 <!-- using nested FrameLayouts so we can have a semi-transparent shadow while clipping content inside the card -->
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card"
         android:layout_below="@+id/text_click"
@@ -30,12 +31,14 @@
                     android:id="@+id/txt_iltitolodellacard"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
+                    style="@style/SenhorCardoText.Titolo"
                     tools:text="El Senhor Cardo"/>
 
             <lecoselol.clumsyninja.figherie.FontTextView
                     android:id="@+id/txt_elcuerpodelsenhorcardo"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
+                    style="@style/SenhorCardoText"
                     tools:text="All your notes are belong to us"/>
 
         </LinearLayout>

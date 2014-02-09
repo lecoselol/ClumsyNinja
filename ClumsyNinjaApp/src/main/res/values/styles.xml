@@ -65,4 +65,15 @@
         <item name="android:layout_margin">24dp</item>
     </style>
 
+    <style name="SenhorCardoText">
+        <item name="android:textSize">21sp</item>
+        <item name="customFont">senhor_fonto.ttf</item>
+    </style>
+
+    <style name="SenhorCardoText.Titolo">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
 </resources>
