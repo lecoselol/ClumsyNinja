@@ -55,11 +55,21 @@
 
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_note_detail"
+            android:label="@string/action_about"
             android:parentActivityName="lecoselol.clumsyninja.NoteListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="lecoselol.clumsyninja.NoteListActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ShowQRCode"
+            android:label="@string/title_qr">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/*"/>
+            </intent-filter>
         </activity>
 
     </application>

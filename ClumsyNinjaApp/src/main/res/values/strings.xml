@@ -16,5 +16,6 @@
     <string name="ok">OK</string>
     <string name="action_about">About #LECOSELOL</string>
     <string name="toast_create_pin">Tap OK to confirm!</string>
+    <string name="title_qr">Share text</string>
 
 </resources>
