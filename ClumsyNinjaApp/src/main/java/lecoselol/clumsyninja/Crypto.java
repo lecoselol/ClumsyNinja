@@ -13,6 +13,7 @@ import javax.crypto.spec.PBEParameterSpec;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.InvalidKeySpecException;
@@ -36,6 +37,23 @@ public final class Crypto
         return SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(keySpec);
     }
 
+    /**
+     * Encrypts a password. As I said!
+     *
+     * @param key  key for password encoding.
+     * @param text body of password encoding.
+     *
+     * @return the encrypted password, if and only if it doesn't throw a bloody hell number of exceptions.
+     *
+     * @throws UnsupportedEncodingException
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
+     */
     public static String encrypt(String key, String text)
             throws UnsupportedEncodingException, InvalidKeySpecException, NoSuchAlgorithmException,
             NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException,
@@ -53,6 +71,23 @@ public final class Crypto
         return Base64.encodeToString(rawEncrypted, Base64.NO_PADDING);
     }
 
+    /**
+     * Decrypts a password. Maybe.
+     *
+     * @param key  key for password encoding.
+     * @param text body of password encoding.
+     *
+     * @return the encrypted password, if and only if it doesn't throw a bloody hell number of exceptions.
+     *
+     * @throws InvalidKeySpecException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws UnsupportedEncodingException
+     */
     public static String decrypt(String key, String text)
             throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException,
             InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
@@ -67,5 +102,31 @@ public final class Crypto
         final byte[] utf8_decrypted = cipher.doFinal(rawEncrypted);
 
         return new String(utf8_decrypted, "UTF-8");
+    }
+
+    /**
+     * Calculates SHA256 of a string in input
+     *
+     * @param password something you want to be hashed
+     *
+     * @return let me guess... an hashed string, maybe. Not sure though. Check the code, you lazy dude.
+     *
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     */
+    public static String SHA256_orYouDie(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException
+    {
+        final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.reset();
+
+        final byte[] byteData = digest.digest(password.getBytes("UTF-8"));
+        StringBuilder bufferedEncodedPassword = new StringBuilder();
+
+        for (byte aByteData : byteData)
+        {
+            bufferedEncodedPassword.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return bufferedEncodedPassword.toString().toLowerCase();
     }
 }
