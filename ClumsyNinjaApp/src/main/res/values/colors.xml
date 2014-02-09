@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ninjaminchia_color1">#ffffbb33</color>
-    <color name="ninjaminchia_color2">#ffffa600</color>
+    <color name="ninjaminchia_color1">#ffffa600</color>
+    <color name="ninjaminchia_color2">#ffffbb33</color>
     <color name="ninjaminchia_color3">#ffffc966</color>
 </resources>
