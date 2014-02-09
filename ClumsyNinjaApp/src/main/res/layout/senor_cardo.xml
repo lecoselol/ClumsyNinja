@@ -17,9 +17,9 @@
             android:background="@drawable/card_shadow">
 
         <FrameLayout
+                android:id="@+id/senhor_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
                 android:foreground="@drawable/card_mask"
                 android:padding="8dp">
 
