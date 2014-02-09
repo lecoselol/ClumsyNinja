@@ -88,7 +88,7 @@ public class AsyncAllTheThings {
         }
     }
 
-    private static final class GetAllEntries extends AsyncTask<Void, Void, Void> {
+    private static final class GetAllEntries extends AsyncTask<Void, Void, ArrayList<Note>> {
         private Callback callback = null;
         private String key;
 
@@ -98,10 +98,10 @@ public class AsyncAllTheThings {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected ArrayList<Note> doInBackground(Void... voids) {
             final Collection<Note> allTheNotes = EncryptedDatabase.getNotes(NinjaApplication.getInstance());
 
-            Collection<Note> decryptedNotes = new ArrayList<Note>();
+            ArrayList<Note> decryptedNotes = new ArrayList<Note>();
 
             boolean anyError = false;
 
@@ -121,11 +121,16 @@ public class AsyncAllTheThings {
             if (anyError) {
                 //TODO insert Emoji
                 final String errorMessage = NinjaApplication.getInstance().getString(R.string.decrypt_note_error);
-                SplendidToast.show(NinjaApplication.getInstance(), errorMessage);
+                //SplendidToast.show(NinjaApplication.getInstance(), errorMessage);
             }
 
-            if (null != callback) callback.execute(decryptedNotes);
-            return null;
+            return decryptedNotes;
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<Note> notes) {
+            if (null != callback) callback.execute(notes);
         }
     }
 

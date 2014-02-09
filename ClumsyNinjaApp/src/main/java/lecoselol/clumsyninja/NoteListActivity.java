@@ -88,7 +88,7 @@ public class NoteListActivity extends Activity
     }
 
     private void aggiungiUnaRobaAllaListaDelleCose() {
-        // TODO CRUD at its finest goes in here
+        onItemSelected(null);
     }
 
     /**
@@ -102,7 +102,8 @@ public class NoteListActivity extends Activity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(NoteDetailFragment.ARG_ITEM_ID, id);
+            int idNum = id != null ? Integer.parseInt(id) : -1;
+            arguments.putInt(NoteDetailFragment.ARG_ITEM_ID, idNum);
             NoteDetailFragment fragment = new NoteDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
