@@ -61,7 +61,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.context_menu, menu);
             getActivity().getWindow().setBackgroundDrawable(
-                    getActivity().getResources().getDrawable(R.drawable.extended_window_cab_background));
+                getActivity().getResources().getDrawable(R.drawable.extended_window_cab_background));
             return true;
         }
 
@@ -100,7 +100,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
 
     private void deleteCurrentItem() {
         final ArrayList<Note> notes = new ArrayList<>();
-        notes.add((Note) mListView.getSelectedItem());
+        notes.add((Note) mListView.getAdapter().getItem(mListView.getCheckedItemPosition()));
         AsyncAllTheThings.deleteNotes(notes);
     }
 
@@ -278,6 +278,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
                         view = inflater.inflate(R.layout.senor_cardo, null);
                         holder.title = (TextView) view.findViewById(R.id.txt_iltitolodellacard);
                         holder.body = (TextView) view.findViewById(R.id.txt_elcuerpodelsenhorcardo);
+                        holder.bgColor = view.findViewById(R.id.senhor_background);
                         view.setTag(holder);
                     }
                     else {
@@ -295,6 +296,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
                         holder.title.setText(title);
                     }
 
+                    holder.bgColor.setBackground(getColor(position));
                     holder.body.setText(currentNote.getBody());
 
                     return view;
@@ -303,6 +305,7 @@ public class NoteListFragment extends Fragment implements AdapterView.OnItemClic
                 class ViewHolder {
                     public TextView title;
                     public TextView body;
+                    public View bgColor;
                 }
             };
 
