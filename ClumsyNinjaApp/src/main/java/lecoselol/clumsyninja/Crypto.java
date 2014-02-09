@@ -64,7 +64,7 @@ public final class Crypto {
 
         byte[] rawEncrypted = cipher.doFinal(utf8_text);
 
-        return Base64.encodeToString(rawEncrypted, Base64.NO_PADDING);
+        return Base64.encodeToString(rawEncrypted, Base64.NO_WRAP);
     }
 
     /**
@@ -88,7 +88,7 @@ public final class Crypto {
                InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
                UnsupportedEncodingException {
         final SecretKey secretKey = getSecretKey(key);
-        final byte[] rawEncrypted = Base64.decode(text, Base64.NO_PADDING);
+        final byte[] rawEncrypted = Base64.decode(text, Base64.NO_WRAP);
 
         Cipher cipher = Cipher.getInstance(secretKey.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, secretKey, paramSpec);

@@ -2,6 +2,7 @@ package lecoselol.clumsyninja;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -114,6 +115,7 @@ public class AsyncAllTheThings {
                     decryptedNotes.add(tmpNote);
                 }
                 catch (Exception e) {
+                    Log.w("AsyncStuff", e);
                     anyError = true;
                 }
             }
